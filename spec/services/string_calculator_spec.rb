@@ -42,7 +42,7 @@ RSpec.describe StringCalculator do
 
     it 'handles different delimiters' do
       numbers = [ rand(1..20), rand(1..20), rand(1..20) ]
-      input = "//;\n#{numbers[0]}\n#{numbers[1]};#{numbers[2]};#{numbers[3]}"
+      input = "//[****][%]\n#{numbers[0]}\n#{numbers[1]}***#{numbers[2]}%*#{numbers[3]}"
       puts "Input numbers - #{numbers}"
       puts "Input String - #{input.inspect}"
       puts "Expected sum - #{numbers.sum}"
@@ -56,6 +56,14 @@ RSpec.describe StringCalculator do
       puts "Input String - #{input.inspect}"
       puts "Expected sum - #{numbers.sum}"
       expect(StringCalculator.add(input)).to eq(numbers.sum)
+    end
+
+    it 'Ignore numbers greater than 1000 numbers' do
+      numbers = [ rand(1..20), rand(1..20), rand(1001..2000) ]
+      input = "//;\n#{numbers[0]}\n#{numbers[1]};#{numbers[2]};#{numbers[3]}"
+      puts "Input numbers - #{numbers}"
+      puts "Input String - #{input.inspect}"
+      expect(StringCalculator.add(input)).to eq(numbers.select { |n| n <= 1000 }.sum)
     end
   end
 end
