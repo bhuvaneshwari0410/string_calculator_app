@@ -22,5 +22,13 @@ RSpec.describe StringCalculator do
       puts "Input String - #{input.inspect}"
       expect(StringCalculator.add(input)).to eq(num1 + num2)
     end
+
+    it 'returns sum for "N" numbet of random numbers' do
+      numbers = Array.new(10) { rand(1..100) }
+      input = numbers.join(",")
+      puts "Input numbers - #{numbers}"
+      puts "Input String - #{input.inspect}"
+      expect(StringCalculator.add(input)).to eq(numbers.sum)
+    end
   end
 end
