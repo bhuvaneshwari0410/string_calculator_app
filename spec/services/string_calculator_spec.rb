@@ -12,5 +12,15 @@ RSpec.describe StringCalculator do
       puts "Input number - #{number}"
       expect(StringCalculator.add(number.to_s)).to eq(number)
     end
+
+    it 'returns sum for two random numbers' do
+      num1 = rand(1..100)
+      num2 = rand(1..100)
+      input = "#{num1},#{num2}"
+      puts "Input number1 - #{num1}"
+      puts "Input number2 - #{num2}"
+      puts "Input String - #{input.inspect}"
+      expect(StringCalculator.add(input)).to eq(num1 + num2)
+    end
   end
 end
